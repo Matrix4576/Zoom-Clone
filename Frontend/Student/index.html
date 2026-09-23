@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SMCC Live student learning workspace and academic calendar">
+  <title>SMCC Live | Student Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Overlay for mobile drawer navigation -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="SMCC Live home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>SMCC Live</span>
+      </a>
+
+      <div class="profile-card">
+        <div class="avatar" id="student-avatar">NS</div>
+        <div class="profile-meta">
+          <strong id="student-name">Niharika Sen</strong>
+          <span>Enrolled · Batch A</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="nav-item active" href="#overview" data-target="overview">
+          <span class="nav-icon" aria-hidden="true">◈</span>
+          <span>Overview</span>
+        </a>
+        <a class="nav-item" href="#calendar" data-target="calendar">
+          <span class="nav-icon" aria-hidden="true">□</span>
+          <span>My Calendar</span>
+        </a>
+        <a class="nav-item" href="#materials" data-target="materials">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span>Reading Materials</span>
+        </a>
+        <a class="nav-item" href="#recordings" data-target="recordings">
+          <span class="nav-icon" aria-hidden="true">▷</span>
+          <span>Class Recordings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="help-box">
+          <span class="help-icon" aria-hidden="true">?</span>
+          <div>
+            <strong>Student Desk</strong>
+            <span>Tutorial assistance</span>
+          </div>
+        </div>
+        <button class="sign-out" id="sign-out-btn" type="button">
+          <span aria-hidden="true">↪</span>
+          <span>Sign out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="content">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <span>Student Portal</span>
+            <b aria-hidden="true">/</b>
+            <strong>Daily Study Rhythm</strong>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <div class="cohort-tag">Cohort: Batch A</div>
+          <button class="notification-btn" id="notification-btn" type="button" aria-label="View notifications">
+            <span class="notif-dot" aria-hidden="true"></span>
+            ♧
+          </button>
+          <div class="mini-avatar" aria-hidden="true">NS</div>
+        </div>
+      </header>
+
+      <!-- Welcome Banner & Learning Rhythm -->
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow" id="student-today-date">WEDNESDAY, 23 SEPTEMBER 2026</p>
+          <h1>Welcome, Niharika.</h1>
+          <p class="subtitle">Here is your academic schedule, topics for upcoming discussions, and reading materials.</p>
+        </div>
+        <div class="streak-card">
+          <span class="streak-label">STUDY RHYTHM</span>
+          <strong class="streak-value">4 <small>days</small></strong>
+          <span class="streak-sub">Consistent attendance</span>
+        </div>
+      </section>
+
+      <!-- Today's Live Class Notice Banner (if any) -->
+      <section class="live-banner" id="live-banner">
+        <div class="live-banner-icon" aria-hidden="true">
+          <span class="live-pulse"></span>
+          🎥
+        </div>
+        <div class="live-banner-content">
+          <div class="live-badge">NEXT LIVE CLASS</div>
+          <h3 id="live-banner-title">Modern Indian History: Lecture 8</h3>
+          <p id="live-banner-topics">Topics: Constitutional Assembly Debates (1946–1949), Preamble philosophies, and minority rights.</p>
+        </div>
+        <button class="join-live-btn" id="live-banner-join-btn" type="button">
+          <span>Join Class</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <!-- Calendar & Day Agenda Grid -->
+      <section class="student-grid" id="calendar">
+        <!-- Academic Calendar Panel -->
+        <article class="panel calendar-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ACADEMIC SCHEDULE</p>
+              <h2 id="calendar-title">September 2026</h2>
+            </div>
+            <div class="calendar-controls">
+              <button class="cal-nav-btn" id="cal-prev-btn" type="button" aria-label="Previous month">‹</button>
+              <button class="cal-today-btn" id="cal-today-btn" type="button">Today</button>
+              <button class="cal-nav-btn" id="cal-next-btn" type="button" aria-label="Next month">›</button>
+            </div>
+          </div>
+
+          <!-- Event Type Legend -->
+          <div class="calendar-legend" aria-label="Event type indicators">
+            <span class="legend-item"><i class="dot lesson"></i> Scheduled Class</span>
+            <span class="legend-item"><i class="dot assignment"></i> Assignment Deadline</span>
+            <span class="legend-item"><i class="dot reading"></i> Pre-Class Reading</span>
+          </div>
+
+          <!-- Weekdays Header -->
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            <span>Sun</span>
+          </div>
+
+          <!-- Dynamic Calendar Grid -->
+          <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Academic Calendar Days">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+        </article>
+
+        <!-- Selected Day Agenda -->
+        <article class="panel agenda-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DAY'S AGENDA</p>
+              <h2 id="agenda-date-heading">Today, 23 Sep</h2>
+            </div>
+            <span class="agenda-cohort-filter" id="agenda-count-badge">3 items</span>
+          </div>
+
+          <div class="agenda-scroll-wrap">
+            <div class="agenda-list" id="agenda-list" aria-live="polite">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+
+          <div class="agenda-tips-box">
+            <span class="tips-icon" aria-hidden="true">💡</span>
+            <span>Click any item card to review full reading notes or topic outlines set by your teacher.</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Lower Grid: Enrolled Cohort & Learning Materials -->
+      <section class="lower-grid">
+        <!-- Enrolled Cohort Card -->
+        <article class="panel cohort-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ENROLLED COHORT</p>
+              <h2>My Batch</h2>
+            </div>
+          </div>
+
+          <div class="batch-profile-box" id="student-batch-card">
+            <div class="batch-badge-avatar">A</div>
+            <div class="batch-info">
+              <strong id="batch-name-display">Batch A · Modern Indian History</strong>
+              <span id="batch-schedule-display">Mon, Wed, Fri · 10:00 AM</span>
+              <p id="batch-desc-display">Instructor: Dr. Anika Roy · Focus: Constitutional History, National Movements & Governance</p>
+            </div>
+          </div>
+
+          <div class="cohort-status-row">
+            <div class="status-item">
+              <span class="status-num">18</span>
+              <span class="status-desc">Classmates</span>
+            </div>
+            <div class="status-item">
+              <span class="status-num">100%</span>
+              <span class="status-desc">Class Attendance</span>
+            </div>
+            <div class="status-item">
+              <span class="status-num">Active</span>
+              <span class="status-desc">Admission Status</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Continue Learning Materials Panel -->
+        <article class="panel materials-panel" id="materials">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">STUDY REPOSITORY</p>
+              <h2>Continue Reading</h2>
+            </div>
+          </div>
+
+          <div class="reading-feature-card">
+            <div class="reading-icon" aria-hidden="true">▤</div>
+            <div class="reading-meta">
+              <strong>The Constitutional Assembly Debates</strong>
+              <span>Core Reading · Uploaded by Dr. Anika Roy</span>
+              <div class="progress-bar-wrap" aria-label="Reading progress 65%">
+                <div class="progress-bar-fill" style="width: 65%;"></div>
+              </div>
+              <small class="reading-progress-text">Pages 45 of 68 read (65%)</small>
+            </div>
+            <button class="open-reading-btn" id="open-reading-btn" type="button" aria-label="Open reading material">
+              ›
+            </button>
+          </div>
+
+          <!-- Academic Quote / Teacher Note -->
+          <div class="quote-panel">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p>Small, steady steps make complex historical arguments clear and memorable.</p>
+            <span class="quote-byline">DR. ANIKA ROY · TUTORIAL FACULTY</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Event Detail Modal (Read-only inspection for students) -->
+  <div class="modal-backdrop" id="detail-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close dialog">×</button>
+      <div class="modal-header">
+        <p class="eyebrow" id="detail-category-badge">EVENT DETAILS</p>
+        <h2 id="detail-title">Modern Indian History: Lecture 8</h2>
+        <p class="modal-copy" id="detail-batch-name">Batch A · Modern Indian History</p>
+      </div>
+
+      <div class="detail-body">
+        <div class="detail-time-row">
+          <div class="time-block">
+            <span class="time-label">Date & Time</span>
+            <strong id="detail-datetime">23 Sep 2026 · 10:00 AM</strong>
+          </div>
+          <div class="time-block" id="detail-duration-block">
+            <span class="time-label">Duration</span>
+            <strong id="detail-duration">75 mins</strong>
+          </div>
+        </div>
+
+        <div class="detail-section" id="detail-topics-wrap">
+          <h4 class="detail-section-title">Topics to be discussed in class</h4>
+          <div class="detail-content-box topics-box" id="detail-topics">
+            <!-- Inserted by script.js -->
+          </div>
+        </div>
+
+        <div class="detail-section" id="detail-materials-wrap">
+          <h4 class="detail-section-title">Required Readings / Submission Notes</h4>
+          <div class="detail-content-box materials-box" id="detail-materials">
+            <!-- Inserted by script.js -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions" id="detail-actions">
+        <button class="secondary-button" data-close-modal type="button">Close</button>
+        <button class="primary-button" id="detail-action-btn" type="button">Join Class</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Classroom Joining Simulation Modal -->
+  <div class="modal-backdrop" id="classroom-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="classroom-title">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close dialog">×</button>
+      <div class="modal-header">
+        <p class="eyebrow">SMCC LIVE CLASSROOM</p>
+        <h2 id="classroom-title">Modern Indian History</h2>
+        <p class="modal-copy">Checking media equipment and admissions token...</p>
+      </div>
+
+      <div class="classroom-preview-box">
+        <div class="camera-placeholder">
+          <span class="camera-icon">🎥</span>
+          <span>WebRTC Camera Preview Ready</span>
+          <small>31 participants maximum · Encrypted LiveKit Room</small>
+        </div>
+
+        <div class="device-checks">
+          <div class="check-item"><span class="check-icon">✓</span> Microphone Connected</div>
+          <div class="check-item"><span class="check-icon">✓</span> Audio Output Verified</div>
+          <div class="check-item"><span class="check-icon">✓</span> Token Authenticated via Supabase RLS</div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="secondary-button" data-close-modal type="button">Cancel</button>
+        <button class="primary-button" id="enter-room-btn" type="button">
+          Enter Live Classroom
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="../shared-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

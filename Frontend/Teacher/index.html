@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SMCC Live faculty and teacher academic workspace">
+  <title>SMCC Live | Teacher Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Overlay for mobile drawer navigation -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="SMCC Live home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>SMCC Live</span>
+      </a>
+
+      <div class="profile-card">
+        <div class="avatar" id="teacher-avatar">AR</div>
+        <div class="profile-meta">
+          <strong id="teacher-name">Dr. Anika Roy</strong>
+          <span>Faculty · Modern History</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="nav-item active" href="#overview" data-target="overview">
+          <span class="nav-icon" aria-hidden="true">◈</span>
+          <span>Overview</span>
+        </a>
+        <a class="nav-item" href="#calendar" data-target="calendar">
+          <span class="nav-icon" aria-hidden="true">□</span>
+          <span>Academic Calendar</span>
+        </a>
+        <a class="nav-item" href="#batches" data-target="batches">
+          <span class="nav-icon" aria-hidden="true">◎</span>
+          <span>Batches & Students</span>
+          <span class="nav-count" id="sidebar-batch-count">3</span>
+        </a>
+        <a class="nav-item" href="#materials" data-target="materials">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span>Reading Materials</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="help-box">
+          <span class="help-icon" aria-hidden="true">?</span>
+          <div>
+            <strong>Faculty Support</strong>
+            <span>Internal tutorial helpdesk</span>
+          </div>
+        </div>
+        <button class="sign-out" id="sign-out-btn" type="button">
+          <span aria-hidden="true">↪</span>
+          <span>Sign out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="content">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <span>Teacher Portal</span>
+            <b aria-hidden="true">/</b>
+            <strong>Academic Rhythm</strong>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <div class="portal-badge">Faculty Space</div>
+          <button class="quick-add-btn" id="topbar-quick-add" type="button">
+            <span>＋</span>
+            <span class="btn-text">New Event</span>
+          </button>
+          <div class="mini-avatar" aria-hidden="true">AR</div>
+        </div>
+      </header>
+
+      <!-- Welcome Banner -->
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow" id="current-day-label">WEDNESDAY, 23 SEPTEMBER 2026</p>
+          <h1>Faculty Workspace</h1>
+          <p class="subtitle">Orchestrate live lectures, syllabus topics, reading materials, and student cohorts.</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="secondary-button" id="open-batch-modal-btn" type="button">
+            <span>◎</span> Add Batch
+          </button>
+          <button class="primary-button" id="open-event-modal-btn" type="button">
+            <span>＋</span> Add to Calendar
+          </button>
+        </div>
+      </section>
+
+      <!-- Academic Metrics -->
+      <section class="stats-grid" aria-label="Teaching summary metrics">
+        <article class="stat-card">
+          <span class="stat-label">Active Batches</span>
+          <strong id="stat-batch-count">3</strong>
+          <span class="stat-note"><b id="stat-batch-active">3 cohorts</b> running this term</span>
+          <span class="stat-art art-bars" aria-hidden="true"></span>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-label">Enrolled Learners</span>
+          <strong id="stat-student-count">48</strong>
+          <span class="stat-note"><b>100%</b> pre-provisioned via admission</span>
+          <span class="stat-art art-dots" aria-hidden="true"></span>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-label">Calendar Events</span>
+          <strong id="stat-event-count">7</strong>
+          <span class="stat-note">Classes, readings & deadlines this month</span>
+          <span class="stat-art art-ring" aria-hidden="true"></span>
+        </article>
+      </section>
+
+      <!-- Calendar & Agenda Grid -->
+      <section class="dashboard-grid" id="calendar">
+        <!-- Academic Calendar Panel -->
+        <article class="panel calendar-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ACADEMIC SCHEDULE</p>
+              <h2 id="calendar-title">September 2026</h2>
+            </div>
+            <div class="calendar-controls">
+              <button class="cal-nav-btn" id="cal-prev-btn" type="button" aria-label="Previous month">‹</button>
+              <button class="cal-today-btn" id="cal-today-btn" type="button">Today</button>
+              <button class="cal-nav-btn" id="cal-next-btn" type="button" aria-label="Next month">›</button>
+            </div>
+          </div>
+
+          <!-- Event Type Legend -->
+          <div class="calendar-legend" aria-label="Calendar event type legend">
+            <span class="legend-item"><i class="dot lesson"></i> Class & Topics</span>
+            <span class="legend-item"><i class="dot assignment"></i> Assignment Due</span>
+            <span class="legend-item"><i class="dot reading"></i> Reading Material</span>
+          </div>
+
+          <!-- Weekdays Header -->
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            <span>Sun</span>
+          </div>
+
+          <!-- Dynamic Calendar Grid -->
+          <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Academic Calendar Days">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+        </article>
+
+        <!-- Selected Day Agenda & Quick Actions -->
+        <article class="panel agenda-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">SELECTED DAY</p>
+              <h2 id="agenda-date-heading">Today, 23 Sep</h2>
+            </div>
+            <button class="text-link" id="agenda-add-event-btn" type="button">＋ Add Event</button>
+          </div>
+
+          <div class="agenda-scroll-wrap">
+            <div class="agenda-list" id="agenda-list" aria-live="polite">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+
+          <div class="agenda-footer">
+            <button class="secondary-button full-width" id="agenda-create-class-shortcut" type="button">
+              <span>🟢</span> Schedule Live Class for this day
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Batches & Student Management Section -->
+      <section class="lower-grid" id="batches">
+        <!-- Batches Panel -->
+        <article class="panel batch-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">COHORT ROSTERS</p>
+              <h2>Active Batches</h2>
+            </div>
+            <button class="text-button" id="create-batch-top-btn" type="button">＋ New Batch</button>
+          </div>
+          <p class="panel-desc">Manage student enrollments, meeting schedules, and syllabus pacing for each tutorial cohort.</p>
+
+          <div class="batch-list" id="batch-list">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+        </article>
+
+        <!-- Faculty Quick Tools Panel -->
+        <article class="panel quick-panel" id="materials">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">FACULTY ACTIONS</p>
+              <h2>Teaching Tools</h2>
+            </div>
+          </div>
+
+          <div class="quick-actions-list">
+            <button class="quick-action-item" id="qa-add-reading" type="button">
+              <span class="qa-icon" aria-hidden="true">▤</span>
+              <div class="qa-body">
+                <strong>Publish Reading Material</strong>
+                <small>Post pre-class reading notes or chapters to a batch</small>
+              </div>
+              <span class="qa-arrow" aria-hidden="true">›</span>
+            </button>
+
+            <button class="quick-action-item" id="qa-add-assignment" type="button">
+              <span class="qa-icon" aria-hidden="true">✎</span>
+              <div class="qa-body">
+                <strong>Assign Homework / Paper</strong>
+                <small>Set topic prompt, word count & submission deadline</small>
+              </div>
+              <span class="qa-arrow" aria-hidden="true">›</span>
+            </button>
+
+            <button class="quick-action-item" id="qa-new-batch" type="button">
+              <span class="qa-icon" aria-hidden="true">◎</span>
+              <div class="qa-body">
+                <strong>Create New Batch</strong>
+                <small>Configure schedule rhythm & assign learners</small>
+              </div>
+              <span class="qa-arrow" aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div class="quote-card">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p>Teaching is setting the rhythm for independent inquiry.</p>
+            <span class="quote-author">SMCC ACADEMIC CHARTER</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal 1: Add / Edit Calendar Event -->
+  <div class="modal-backdrop" id="event-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close dialog">×</button>
+      <div class="modal-header">
+        <p class="eyebrow">ACADEMIC CALENDAR</p>
+        <h2 id="event-modal-title">Schedule Academic Event</h2>
+        <p class="modal-copy">Create a live class, assign coursework due dates, or designate pre-class readings for learners.</p>
+      </div>
+
+      <form id="event-form" novalidate>
+        <input type="hidden" id="event-id" name="id">
+
+        <div class="form-group">
+          <label for="event-title">Event Title <span class="required">*</span></label>
+          <input id="event-title" name="title" type="text" placeholder="e.g. Modern Indian History: Lecture 9" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event-type">Event Category <span class="required">*</span></label>
+            <select id="event-type" name="type" required>
+              <option value="class">Class & Topic Discussion</option>
+              <option value="assignment">Assignment / Submission Due</option>
+              <option value="reading">Pre-Class Reading Material</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="event-batch">Assigned Batch <span class="required">*</span></label>
+            <select id="event-batch" name="batchId" required>
+              <!-- Filled dynamically by script.js -->
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event-date">Date <span class="required">*</span></label>
+            <input id="event-date" name="date" type="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="event-time">Time</label>
+            <input id="event-time" name="time" type="text" placeholder="e.g. 10:00 AM" value="10:00 AM">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="event-topics" id="topics-label">Topics to be discussed in class</label>
+          <textarea id="event-topics" name="topics" rows="3"
+            placeholder="Outline key discussion themes, historical events, or lecture focus areas..."></textarea>
+          <small class="field-hint">Students see these themes on their calendar agenda before entering class.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="event-materials" id="materials-label">Reading Materials / Assignment Details</label>
+          <textarea id="event-materials" name="materials" rows="2"
+            placeholder="Specify required chapter readings, page numbers, or submission guidelines..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="secondary-button" data-close-modal type="button">Cancel</button>
+          <button class="primary-button" id="save-event-submit-btn" type="submit">Save to Calendar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Create Batch -->
+  <div class="modal-backdrop" id="batch-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="batch-modal-title">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close dialog">×</button>
+      <div class="modal-header">
+        <p class="eyebrow">COHORT MANAGEMENT</p>
+        <h2 id="batch-modal-title">Create New Batch</h2>
+        <p class="modal-copy">Establish a private tutorial cohort with a distinct schedule rhythm and syllabus focus.</p>
+      </div>
+
+      <form id="batch-form" novalidate>
+        <div class="form-group">
+          <label for="batch-name">Batch Name <span class="required">*</span></label>
+          <input id="batch-name" name="name" type="text" placeholder="e.g. Batch D · Political Philosophy" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="batch-subject">Subject Area <span class="required">*</span></label>
+            <input id="batch-subject" name="subject" type="text" placeholder="e.g. History / Philosophy" required>
+          </div>
+
+          <div class="form-group">
+            <label for="batch-color">Theme Accent</label>
+            <select id="batch-color" name="color">
+              <option value="green">Sage Green (Standard)</option>
+              <option value="blue">Slate Blue</option>
+              <option value="gold">Warm Gold</option>
+              <option value="purple">Aubergine</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="batch-schedule">Meeting Rhythm / Schedule <span class="required">*</span></label>
+          <input id="batch-schedule" name="schedule" type="text" placeholder="e.g. Mon, Wed, Fri · 04:00 PM" required>
+        </div>
+
+        <div class="form-group">
+          <label for="batch-description">Description / Academic Focus</label>
+          <textarea id="batch-description" name="description" rows="2"
+            placeholder="Core curriculum topics and semester goals for this cohort..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="secondary-button" data-close-modal type="button">Cancel</button>
+          <button class="primary-button" type="submit">Create Batch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Batch Roster & Add Students -->
+  <div class="modal-backdrop" id="roster-modal" hidden>
+    <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="roster-modal-title">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close dialog">×</button>
+      <div class="modal-header">
+        <p class="eyebrow" id="roster-batch-code">BATCH ROSTER</p>
+        <h2 id="roster-modal-title">Batch A · Modern Indian History</h2>
+        <p class="modal-copy" id="roster-batch-subtitle">Enrolled students who have verified admission access to this cohort.</p>
+      </div>
+
+      <!-- Add Student to Batch Accordion / Form -->
+      <div class="roster-add-box">
+        <h3 class="roster-section-title">Add Student to Cohort</h3>
+        <form id="add-student-form" novalidate>
+          <input type="hidden" id="roster-batch-id" name="batchId">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="student-name">Student Full Name <span class="required">*</span></label>
+              <input id="student-name" name="name" type="text" placeholder="e.g. Sneha Sengupta" required>
+            </div>
+            <div class="form-group">
+              <label for="student-email">Student Email <span class="required">*</span></label>
+              <input id="student-email" name="email" type="email" placeholder="sneha.s@smcc.edu" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="student-roll">Roll / Admission Number</label>
+              <input id="student-roll" name="rollNo" type="text" placeholder="Auto-generated if empty">
+            </div>
+            <div class="form-group form-action-align">
+              <button class="primary-button full-width" type="submit">＋ Add Student to Batch</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Current Roster Table -->
+      <div class="roster-list-wrap">
+        <div class="roster-list-header">
+          <h3 class="roster-section-title">Enrolled Students (<span id="roster-count">0</span>)</h3>
+        </div>
+        <div class="roster-table-container">
+          <table class="roster-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Admission ID</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="roster-table-body">
+              <!-- Rendered dynamically by script.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="secondary-button" data-close-modal type="button">Close Roster</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="../shared-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
